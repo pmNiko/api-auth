@@ -1,0 +1,14 @@
+Ya tenemos configurado nuestro entorno de desarrollo 
+Ahora vamos a preparar nuestro codigo de produccion 
+
+para esto vamos a cambiar un poco la logica de nuestro package.json
+
+  "scripts": {
+    "build": "babel src --out-dir build",
+    "dev": "nodemon src/index.js --exec babel-node",
+    "start": "node build/index.js"
+  },
+
+De esta manera tenemos el comando npm run build para convertir el codigo 
+de produccion, npm start para ejecutarlo y npm run dev para ejecutar 
+codigo de desarrollo.
