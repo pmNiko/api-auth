@@ -1,0 +1,58 @@
+Comenzamos inicializando el server del API REST 
+con npm init -y
+
+Vamos a instalar los modulos necesarios para correr nuestro server 
+npm i 
+  -> express //Framework de node permite la creacion del server 
+  -> bcryptjs //Sirve para cifrar datos 
+  -> cors  //Permite comunicar el back con otros server, establece las rules
+  -> dotenv //Sirve para crear variables de entorno 
+  -> jsonwebtoken //Brinda un token al user para la interacción con el back 
+  -> mongoose //Modulo de conección a la bd 
+  -> morgan //Permite ver las consultas que llegan al server 
+  -> helmet //Restringe la información que brinda el server y permite validaciones
+
+Adicionalmente a esto vamos a añadir babel, ya qwue nos permite usar las 
+ultimas caracteristicas de Ecmac Script. Con esto interpretara codigo moderno 
+a codigo soportado por node.js  tales como import {Foo} from 'something'
+o async await, etc 
+ npm i @babel/core @babel/cli @babel/node @babel-preset-env nodemon -D 
+ // -D es para que se intale a nivel de desarrollo 
+
+ Bien ahora para poder levantar el server de manera basica vamos a configurar
+ el package-json con babel 
+
+ "scripts": {
+    "start": "babel-node src/index.js "
+  },
+
+y agregamos un archivo de configuracion de babel .babelrc
+
+{
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
+
+Hecho esto ya podemos importar express y configurar nuestro server 
+en index.js
+
+import express from "express";
+
+const app = express();
+
+app.listen(3000);
+
+console.log("Server listen on port", 3000);
+
+Aclaración en este punto el servidor se queda escuchando en el port 3000
+pero no se refresca ante los cambios que vallamos realizando 
+para esto tenemos que indicar en el script de package.json que va utilizar 
+nodemon a traves de babel-node
+
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node"
+  },
+
+Ahora si terminamos la configuración de nuestro server basico.
+
