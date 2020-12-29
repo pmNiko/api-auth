@@ -2,6 +2,8 @@ import express from "express";
 // modulo para el log de peticiones
 import morgan from "morgan";
 import pkg from "../package.json";
+// rutas de products
+import productsRoutes from "./routes/products.routes";
 
 // creación de la instancia del server de express
 const app = express();
@@ -22,5 +24,8 @@ app.get("/", (req, res) => {
     version,
   });
 });
+
+// hacemos uso de las routes de products
+app.use("/products", productsRoutes);
 
 export default app;
