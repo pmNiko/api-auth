@@ -1,10 +1,10 @@
-import express from "express";
-// modulo para el log de peticiones
-import morgan from "morgan";
-import pkg from "../package.json";
+En app.js va la configuración de nuestra API 
+en cambio en index.js tan solo va la configuración 
+de arranque de nuestra app
 
-// creación de la instancia del server de express
-const app = express();
+Usamos una ruta de prueba e importamos el modulo de morgan
+para poder ver el log de la peticion por consola a nivel 
+de desarrollo. 
 
 // indicamos a morgan el nivel de ejecucion
 app.use(morgan("dev"));
@@ -22,5 +22,3 @@ app.get("/", (req, res) => {
     version,
   });
 });
-
-export default app;
