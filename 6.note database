@@ -1,0 +1,16 @@
+Conectemos con la base de datos a través de mongoose 
+
+database.js
+
+  import mongoose from "mongoose";
+
+  mongoose
+    .connect("mongodb://localhost/companydb", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then((db) => console.log("DB is connected"))
+    .catch((error) => console.log(error));
+
+importamos este archivo en index.js y ya se conecta 
+contra mongodb

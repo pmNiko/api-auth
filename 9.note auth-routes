@@ -1,0 +1,68 @@
+Vamos a configurar la seguridad por token para acceder a la api
+Por lo tanto vamos a desarrollar las rutas de auth, pero antes 
+vamos a modelar nuestro User
+ models/ User.js
+
+import { Schema, model } from "mongoose";
+
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+    },
+    email: {
+      type: String,
+      unique: true,
+    },
+    password: {
+      type: {
+        type: String,
+        required: true,
+      },
+    },
+    roles: [
+      {
+        // de esta manera relacionamos el Schema de Role al User
+        ref: "Role",
+        type: Schema.Types.ObjectId,
+      },
+    ],
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+export default model("User", userSchema);
+
+
+  ------- Model Role.js ----------
+  import { Schema, model } from "mongoose";
+
+  const roleSchema = new Schema(
+    {
+      name: String,
+    },
+    {
+      versionKey: false,
+    }
+  );
+
+  export default model("Role", roleSchema);
+
+
+Ahora ya podemos utilizar nuestro model User en auth.controller.js
+
+  import User from "../models/User";
+
+  export const singUp = async (req, res) => {};
+
+  export const singIn = async (req, res) => {};
+
+Por ultimo nos vamos a la def de sus endpoint
+  import * as authController from "../controllers/auth.controller";
+
+  router.post("/signup", authController.singUp);
+  router.post("/signin", authController.singIn);

@@ -1,0 +1,31 @@
+Debemos definir los modelos de datos que van a guardarse en la BD 
+
+en la carpeta models/      vamos a crear los archivos de definición
+
+  -> Product.js 
+  -> User.js 
+  -> Role.js
+
+vamos a definir el schema y modelo de products
+
+  import { Schema, model } from "mongoose";
+
+  const productSchema = new Schema(
+    {
+      name: String,
+      category: String,
+      price: Number,
+      imgURL: String,
+    },
+    {
+      // creación y actualizacion del obj
+      timestamps: true,
+      // evita el __uv
+      versionKey: false,
+    }
+  );
+
+  export default model("Product", productSchema);
+
+-> Ahora ya podemos dirigrnos al archivo productsController.js e 
+  importar el modelo de datos para interactuar con la BD

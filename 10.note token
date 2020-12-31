@@ -1,0 +1,9 @@
+Para generar un token con JWT usamos su metodo sing 
+que recibe tres parametros, el objeto a guardar -
+el key secret y el objeto de configuración 
+
+  let token = jwt.sign({ id: savedUser._id }, config.SECRET, {
+    expiresIn: 86400,
+  });
+
+  al final le devolvemos ese token al user 

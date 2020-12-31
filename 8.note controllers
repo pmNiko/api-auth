@@ -1,0 +1,43 @@
+// funciones de respuesta a los endpoint de products
+
+// importación del modelo Product
+import Product from "../models/Product";
+
+// crear un nuevo product POST
+export const createProduct = (req, res) => {
+  console.log(req.body);
+  res.json("created product");
+};
+
+// todos los productos GET
+export const getProducts = (req, res) => {
+  res.json("get products");
+};
+
+// buscar un producto por ID GET
+export const getProduct = (req, res) => {};
+
+// actualizar un producto por ID PUT
+export const updateProduct = (req, res) => {};
+
+// borrar un producto por ID DELETE
+export const deleteProduct = (req, res) => {};
+
+Podemos probar nuestra API a través de Postman 
+-> POST http://localhost:3000/products
+  headers 
+    Content-Type           application/json
+  body 
+   raw 
+    {
+      "name": "Laptop Lenovo",
+      "category": "Laptops",
+      "price": 999.999,
+      "imgURL": "https://d598hd2wips7r.cloudfront.net/catalog/product/cache/b3b166914d87ce343d4dc5ec5117b502/4/P/4PF56LA-1_T1571248310.png"
+    }
+
+Ya podemos mandar nuestros datos al servidor, pero para que este los reciba debemos 
+configurar en app.js 
+
+// le indicamos a express que reciba los datos en formato json
+app.use(express.json());

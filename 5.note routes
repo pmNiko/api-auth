@@ -1,0 +1,51 @@
+Estructura de routes 
+  routes/
+    - auth.routes.js  //Archivo relacionado con la autenticacion
+    - products.routes.js //Endpoint de productos
+    - user.routes.js //Endpoint de usuarios
+
+-> en la consola hacemos touch auth.routes.js  products.routes.js user.routes.js
+
+En los tres archivos importamos y creamos el enrrutador de express 
+
+  import { Router } from "express";
+
+  const router = Router();
+
+  export default router;
+
+Para lograr un orden y separar el codigo vamos a trabajar la definicion 
+de routas en la carpeta routes/ y la resolución de las rutas en la 
+carpeta controllers/ 
+
+ En el archivo constrollers/products.controller.js 
+
+ // funciones de respuesta a los endpoint de products
+
+  export const createProduct = (req, res) => {};
+
+  export const getProducts = (req, res) => {
+    res.json("get products");
+  };
+
+  export const getProduct = (req, res) => {};
+
+  export const updateProduct = (req, res) => {};
+
+  export const deleteProduct = (req, res) => {};
+
+
+  Entonces podemos importar esta funcionalidad en las routes 
+
+  // importación del controlador de products
+  import * as productsController from "../controllers/products.controller";
+
+  router.get("/", productsController.getProducts);
+
+  Por ultimo importamos las rutas en app.js 
+  // rutas de products
+  import productsRoutes from "./routes/products.routes";
+
+  // hacemos uso de las routes de products
+  app.use("/products", productsRoutes); 
+
