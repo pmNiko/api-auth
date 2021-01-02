@@ -1,0 +1,2 @@
+Ahora que ya tenemos el manejo de roles por usuario 
+vamos a proteger las rutas acorde al rol de cada usuuario.

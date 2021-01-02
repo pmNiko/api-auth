@@ -5,6 +5,7 @@ import pkg from "../package.json";
 // rutas de products
 import productsRoutes from "./routes/products.routes";
 import authRoutes from "./routes/auth.routes";
+import userRoutes from "./routes/user.routes";
 
 // importo el initialSetup
 import { createRoles } from "./libs/initialSetup";
@@ -37,5 +38,5 @@ app.get("/", (req, res) => {
 // hacemos uso de las routes de products
 app.use("/api/products", productsRoutes);
 app.use("/api/auth", authRoutes);
-
+app.use("/api/users", userRoutes);
 export default app;

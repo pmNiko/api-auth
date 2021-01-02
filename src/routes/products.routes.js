@@ -1,5 +1,6 @@
 // importación del controlador de products
 import * as productsController from "../controllers/products.controller";
+import { authJwt } from "../middlewares";
 
 import { Router } from "express";
 
@@ -8,14 +9,26 @@ const router = Router();
 
 // ------ Rutas de productos ------- //
 
-router.post("/", productsController.createProduct); // -> crear
+router.post(
+  "/",
+  [authJwt.verifyToken, authJwt.isModerator],
+  productsController.createProduct
+); // -> crear
 
 router.get("/", productsController.getProducts); // -> ver todos
 
 router.get("/:id", productsController.getProduct); // -> buscar uno
 
-router.put("/:id", productsController.updateProduct); // -> actualizar
+router.put(
+  "/:id",
+  [authJwt.verifyToken, authJwt.isAdmin],
+  productsController.updateProduct
+); // -> actualizar
 
-router.delete("/:id", productsController.deleteProduct); // -> eliminar
+router.delete(
+  "/:id",
+  [authJwt.verifyToken, authJwt.isAdmin],
+  productsController.deleteProduct
+); // -> eliminar
 
 export default router;
